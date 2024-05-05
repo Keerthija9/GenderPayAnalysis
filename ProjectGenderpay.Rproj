@@ -1,20 +1,44 @@
-Version: 1.0
+chooseCRANmirror(graphics = FALSE)
+install.packages("readxl")
+library(readxl)
 
-RestoreWorkspace: Default
-SaveWorkspace: Default
-AlwaysSaveHistory: Default
+Total_Workers_data <- read_excel("C:\\Intro to DataAnalytics\\Final project\\Total_Workers.xlsx")
 
-EnableCodeIndexing: Yes
-UseSpacesForTab: Yes
-NumSpacesForTab: 2
-Encoding: UTF-8
+head(Total_Workers_data)
 
-RnwWeave: Sweave
-LaTeX: pdfLaTeX
+Total_male_earnings<-Total_Workers_data$`Median earnings (dollars)/Male`
+head(Total_male_earnings)
+Total_female_earnings <- Total_Workers_data$`Median Earnings(dollars)/Female`
+head(Total_female_earnings)
+Year <- Total_Workers_data$Year
 
-AutoAppendNewline: Yes
-StripTrailingWhitespace: Yes
+TotalWorkers_PayGap<- ((Total_male_earnings - Total_female_earnings) / Total_male_earnings) * 100
+TotalWorkers_PayGap
+boxplot(TotalWorkers_PayGap ~ Year)
+t.test(Total_male_earnings,Total_female_earnings)
 
-BuildType: Package
-PackageUseDevtools: Yes
-PackageInstallArgs: --no-multiarch --with-keep.source
+
+TotalWorkers_MeanPayGap <- t.test(Total_male_earnings)$estimate - t.test(Total_female_earnings)$estimate
+TotalWorkers_MeanPayGap
+
+lm_Total_Workers_data <- lm(Total_male_earnings~Total_female_earnings, data=Total_Workers_data)
+TotalWorkers_anovaResult <- anova(lm_Total_Workers_data)
+TotalWorkers_anovaResult
+
+FullTime_Workers_data<-read_excel("C:\\Intro to DataAnalytics\\Final project\\FullTime_Workers.xlsx")
+head(FullTime_Workers_data)
+
+FullTime_Male_Earnings<- FullTime_Workers_data$`Male Earnings(Dollars)`
+FullTime_Female_earnings<- FullTime_Workers_data$`Female Earnings(dollars`
+FullTime_PayGap<- ((FullTime_Male_Earnings- FullTime_Female_earnings)/FullTime_Male_Earnings) * 100
+boxplot(FullTime_PayGap ~ Year)
+
+t.test(FullTime_Male_Earnings, FullTime_Female_earnings)
+
+FullTime_MeanPayGap <- t.test(FullTime_Male_Earnings)$estimate - t.test(FullTime_Female_earnings)$estimate
+FullTime_MeanPayGap
+
+lm_FullTime <- lm(FullTime_Male_Earnings ~ FullTime_Female_earnings, data = FullTime_Workers_data)
+FullTime_anova_result <- anova(lm_FullTime)
+FullTime_anova_result
+
