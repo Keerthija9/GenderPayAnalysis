@@ -1,1 +1,12 @@
-In our project, we're using RStudio to examine the pay gap between men and women over several decades. We obtained our data from the “United States Census Bureau”, which provides information on median earnings for both total workers and full-time workers from 1960 to 2022, categorized by gender. This dataset is split into two sections: one for total workers and another for full-time workers. 
+Overview:
+Analyzed the gender pay gap using U.S. Census Bureau data (1960–2022) in RStudio, performing t-tests, ANOVA, and hypothesis testing to assess wage disparities between men and women.
+
+Methodology:
+Imported and cleaned earnings data.
+Calculated Gender Pay Gap %.
+Conducted t-tests & ANOVA to evaluate statistical significance.
+Visualized trends using boxplots.
+
+Key Findings:
+✅ Statistically significant gender pay gap exists.
+✅ Gap has decreased over time but persists.
